@@ -60,6 +60,7 @@
           services.octopusenergy-consumption-metrics = with lib.types; {
             enable = lib.mkEnableOption "octopusenergy-consumption-metrics";
             apiKeyFile = lib.mkOption { type = str; };
+            accountNumber = lib.mkOption { type = str; };
             loopTime = lib.mkOption {
               type = int;
               default = 3600;
@@ -122,6 +123,7 @@
                   export OCTO_ELECTRIC_COST="${toString cfg.electricity.cost}"
                   export OCTO_GAS_COST="${toString cfg.gas.cost}"
                   export PAGE_SIZE="${toString cfg.pageSize}"
+                  export OCTO_ACCOUNT_NUMBER="${cfg.accountNumber}"
                   ${pkgs.octopusenergy-consumption-metrics}/bin/octopusenergy-consumption-metrics
                 '';
               in "${package}/bin/octopusenergy-consumption-metrics-wrapped";
