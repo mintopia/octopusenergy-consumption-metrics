@@ -107,6 +107,7 @@
             enable = true;
             wantedBy = [ "multi-user.target" ];
             serviceConfig = {
+              Restart = "always";
               ExecStart = let
                 package = pkgs.writeScriptBin "octopusenergy-consumption-metrics-wrapped" ''
                   #!${pkgs.stdenv.shell}
